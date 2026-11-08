@@ -1,0 +1,75 @@
+// 1. Design tokens (override variabel Bootstrap SEBELUM import)
+$primary:   #B4442B;
+$secondary: #6B5B4E;
+$success:   #2F7D4F;
+$warning:   #E9A23B;
+$danger:    #C0392B;
+$light:     #FFF8F0;
+$dark:      #2B2118;
+
+$body-bg:        #FFF8F0;
+$body-color:     #2B2118;
+$font-family-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+$headings-font-family:   Georgia, 'Times New Roman', serif;
+$border-radius:    .75rem;
+$border-radius-lg: 1rem;
+$enable-shadows: true;
+
+// 2. Bootstrap (selektif)
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/utilities';
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/reboot';
+@import 'bootstrap/scss/type';
+@import 'bootstrap/scss/images';
+@import 'bootstrap/scss/containers';
+@import 'bootstrap/scss/grid';
+@import 'bootstrap/scss/forms';
+@import 'bootstrap/scss/buttons';
+@import 'bootstrap/scss/transitions';
+@import 'bootstrap/scss/dropdown';
+@import 'bootstrap/scss/nav';
+@import 'bootstrap/scss/navbar';
+@import 'bootstrap/scss/card';
+@import 'bootstrap/scss/badge';
+@import 'bootstrap/scss/helpers';
+@import 'bootstrap/scss/utilities/api';
+
+// 3. Komponen RasaRuang
+.rr-skip-link {
+    position: absolute;
+    left: -999px;
+    &:focus { left: 1rem; top: 1rem; z-index: 2000; }
+}
+
+.rr-hero {
+    background: linear-gradient(135deg, #FFF1E0 0%, #FBD9B5 100%);
+    padding-block: clamp(3rem, 8vw, 6rem);
+}
+
+.rr-card {
+    border: 0;
+    box-shadow: 0 .25rem 1rem rgba($dark, .08);
+    transition: transform .2s ease, box-shadow .2s ease;
+    overflow: hidden;
+    &:hover { transform: translateY(-4px); box-shadow: 0 .5rem 1.5rem rgba($dark, .14); }
+    .card-img-top { aspect-ratio: 4 / 3; object-fit: cover; background: #F3E3D0; }
+}
+
+.rr-badge-soft {
+    background: rgba($primary, .1);
+    color: $primary;
+    font-weight: 600;
+}
+
+.rr-cart-badge { font-size: .65rem; }
+
+.rr-section { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+
+@media (prefers-reduced-motion: reduce) {
+    .rr-card { transition: none; &:hover { transform: none; } }
+}
