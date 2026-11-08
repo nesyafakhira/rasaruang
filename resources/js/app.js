@@ -4,8 +4,10 @@ import { initCartBadge } from './modules/cart';
 window.bootstrap = bootstrap;
 
 // Code splitting: modul halaman hanya diunduh saat halaman itu dibuka
+
 const pages = {
     catalog: () => import('./pages/catalog'),
+    'menu-detail': () => import('./pages/menuDetail'),
 };
 
 document.addEventListener('DOMContentLoaded', async () => {

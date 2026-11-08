@@ -36,6 +36,8 @@ $enable-shadows: true;
 @import 'bootstrap/scss/navbar';
 @import 'bootstrap/scss/card';
 @import 'bootstrap/scss/badge';
+@import 'bootstrap/scss/breadcrumb';
+@import 'bootstrap/scss/forms/input-group';
 @import 'bootstrap/scss/helpers';
 @import 'bootstrap/scss/utilities/api';
 
@@ -69,6 +71,8 @@ $enable-shadows: true;
 .rr-cart-badge { font-size: .65rem; }
 
 .rr-section { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+
+.rr-qty { width: 9rem; }
 
 @media (prefers-reduced-motion: reduce) {
     .rr-card { transition: none; &:hover { transform: none; } }
