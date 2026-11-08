@@ -8,6 +8,7 @@ window.bootstrap = bootstrap;
 const pages = {
     catalog: () => import('./pages/catalog'),
     'menu-detail': () => import('./pages/menuDetail'),
+    rasamatch: () => import('./pages/rasamatch'),
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
