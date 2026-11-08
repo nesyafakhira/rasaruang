@@ -1,27 +1,7 @@
 import { menus } from '../data/menus';
-import { addToCart } from '../modules/cart';
+import { buildMenuCard } from '../components/menuCard';
 
-const rupiah = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 });
-const SPICE = { none: 'Tidak pedas', mild: 'Ringan', medium: 'Sedang', hot: 'Pedas' };
-
-function buildCard(menu, tpl) {
-    const node = tpl.content.firstElementChild.cloneNode(true);
-    node.querySelector('[data-name]').textContent = menu.name;
-    node.querySelector('[data-category]').textContent = menu.category;
-    node.querySelector('[data-price]').textContent = rupiah.format(menu.price);
-    node.querySelector('[data-spice]').textContent = SPICE[menu.spice_level];
-    const img = node.querySelector('img');
-    img.src = `/assets/img/menu/${encodeURIComponent(menu.image)}`;
-    img.alt = menu.name;
-    const btn = node.querySelector('[data-add]');
-    const available = menu.is_available && menu.stock > 0;
-    btn.disabled = !available;
-    btn.textContent = available ? 'Tambah' : 'Habis';
-    btn.addEventListener('click', () => addToCart(menu.id));
-    return node;
-}
-
-export function initCatalog() {
+export default function init() {
     const grid = document.getElementById('menu-grid');
     const tpl = document.getElementById('menu-card-tpl');
     const empty = document.getElementById('menu-empty');
@@ -38,7 +18,7 @@ export function initCatalog() {
             m.price <= state.maxPrice
         );
         const frag = document.createDocumentFragment();
-        result.forEach(m => frag.appendChild(buildCard(m, tpl)));
+        result.forEach(m => frag.appendChild(buildMenuCard(m, tpl)));
         grid.replaceChildren(frag);
         empty.classList.toggle('d-none', result.length > 0);
     };

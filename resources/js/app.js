@@ -1,14 +1,19 @@
 import * as bootstrap from 'bootstrap';
 import { initCartBadge } from './modules/cart';
-import { initCatalog } from './pages/catalog';
 
 window.bootstrap = bootstrap;
 
-document.addEventListener('DOMContentLoaded', () => {
+// Code splitting: modul halaman hanya diunduh saat halaman itu dibuka
+const pages = {
+    catalog: () => import('./pages/catalog'),
+};
+
+document.addEventListener('DOMContentLoaded', async () => {
     initCartBadge();
 
-    // Modul halaman hanya jalan jika elemennya ada (hemat memori)
-    if (document.querySelector('[data-page="catalog"]')) {
-        initCatalog();
+    const key = document.querySelector('[data-page]')?.dataset.page;
+    if (key && Object.hasOwn(pages, key)) {
+        const module = await pages[key]();
+        module.default();
     }
 });
