@@ -1,5 +1,5 @@
 const KEY = 'rr_cart_v1';
-const MAX_QTY = 20;
+export const MAX_QTY = 20;
 
 const read = () => {
     try {
