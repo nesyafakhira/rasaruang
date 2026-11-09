@@ -9,6 +9,7 @@ const pages = {
     catalog: () => import('./pages/catalog'),
     'menu-detail': () => import('./pages/menuDetail'),
     rasamatch: () => import('./pages/rasamatch'),
+    auth: () => import('./pages/auth'),
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
