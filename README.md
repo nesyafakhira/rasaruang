@@ -10,7 +10,7 @@ Aplikasi pemesanan makanan dan manajemen operasional restoran (Laravel + Bootstr
     npm run dev          # terminal 1
     php artisan serve    # terminal 2
 
-## Progres frontend
+## Progres frontend 
 - [x] Design system (SCSS tokens, komponen dasar)
 - [x] Layout, navbar, footer
 - [x] Homepage
