@@ -12,6 +12,7 @@ const pages = {
     auth: () => import('./pages/auth'),
     cart: () => import('./pages/cart'),
     checkout: () => import('./pages/checkout'),
+    'order-success': () => import('./pages/orderSuccess'),
 };
 
 document.addEventListener('DOMContentLoaded', async () => {

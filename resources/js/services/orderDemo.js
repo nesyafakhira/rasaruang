@@ -1,29 +1,28 @@
-const LAST_ORDER_KEY = 'rr_last_order';
+import { tables } from '../data/tables';
+import { getOrders, nextOrderId, saveOrder } from './orderStore';
 
 const pad = (n, len = 2) => String(n).padStart(len, '0');
 
-// Hanya untuk fase frontend. Di backend: OrderService membuat kode & menyimpan ke MySQL.
+// Hanya fase frontend. Di backend: OrderService membuat kode, menyimpan ke MySQL (DB transaction).
 export function createDemoOrder({ orderType, tableId, paymentMethod, notes, summary }) {
     const now = new Date();
+    const iso = now.toISOString();
     const day = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}`;
 
-    let seq = 1;
-    try {
-        const key = `rr_order_seq_${day}`;
-        seq = (Number.parseInt(localStorage.getItem(key), 10) || 0) + 1;
-        localStorage.setItem(key, String(seq));
-    } catch {
-        // abaikan
-    }
+    const todayCount = getOrders().filter(o => o.order_code.startsWith(`RR-${day}-`)).length;
+    const table = tableId ? tables.find(t => t.id === tableId) : null;
 
     const order = {
-        order_code: `RR-${day}-${pad(seq, 4)}`,
+        id: nextOrderId(),
+        order_code: `RR-${day}-${pad(todayCount + 1, 4)}`,
         order_type: orderType,
         table_id: tableId,
+        table_number: table?.table_number ?? null,
         status: 'pending',
         payment_method: paymentMethod,
         payment_status: 'unpaid',
         notes,
+        cancellation_reason: null,
         total_price: summary.total,
         items: summary.lines.map(l => ({
             menu_id: l.menu.id,
@@ -32,13 +31,16 @@ export function createDemoOrder({ orderType, tableId, paymentMethod, notes, summ
             price: l.menu.price,    // snapshot
             subtotal: l.subtotal,
         })),
-        created_at: now.toISOString(),
+        status_history: [{
+            old_status: null,
+            new_status: 'pending',
+            changed_by: 'Customer',
+            notes: 'Pesanan dibuat',
+            created_at: iso,
+        }],
+        created_at: iso,
     };
 
-    try {
-        localStorage.setItem(LAST_ORDER_KEY, JSON.stringify(order));
-    } catch {
-        // abaikan
-    }
+    saveOrder(order);
     return order;
 }
