@@ -11,6 +11,7 @@ const pages = {
     rasamatch: () => import('./pages/rasamatch'),
     auth: () => import('./pages/auth'),
     cart: () => import('./pages/cart'),
+    checkout: () => import('./pages/checkout'),
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
