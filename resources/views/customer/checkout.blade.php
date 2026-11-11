@@ -11,13 +11,6 @@
         <a href="{{ route('menu.index') }}" class="btn btn-primary">Lihat Menu</a>
     </div>
 
-    <div id="co-success" class="alert alert-success d-none" role="status">
-        <h2 class="h5">Pesanan berhasil dibuat</h2>
-        <p class="mb-1">Nomor pesanan: <strong id="co-code"></strong></p>
-        <p class="mb-3">Total: <strong id="co-success-total"></strong></p>
-        <a href="{{ route('menu.index') }}" class="btn btn-primary btn-sm">Kembali ke Menu</a>
-    </div>
-
     <form id="checkout-form" class="row g-4 d-none" data-demo method="POST" action="{{ url('/checkout') }}" novalidate>
         @csrf
 

@@ -125,11 +125,6 @@ export default function init() {
         e.preventDefault();
         const order = createDemoOrder(data);
         clearCart();
-
-        $('#co-code').textContent = order.order_code;
-        $('#co-success-total').textContent = rupiah.format(order.total_price);
-        form.classList.add('d-none');
-        $('#co-success').classList.remove('d-none');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.location.assign(`/order/success/${order.id}`);
     });
 }
