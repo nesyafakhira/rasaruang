@@ -8,3 +8,5 @@ Route::view('/menu/{id}', 'customer.menu-detail')->whereNumber('id')->name('menu
 Route::view('/rasamatch', 'customer.rasamatch')->name('rasamatch');
 Route::view('/login', 'auth.login')->name('login');
 Route::view('/register', 'auth.register')->name('register');
+Route::view('/cart', 'customer.cart')->name('cart.index');
+Route::view('/checkout', 'customer.checkout')->name('checkout.index');

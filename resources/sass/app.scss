@@ -75,6 +75,18 @@ $enable-shadows: true;
 
 .rr-qty { width: 9rem; }
 
+.rr-cart-img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: $border-radius;
+    background: #F3E3D0;
+}
+
+@include media-breakpoint-up(lg) {
+    .rr-sticky-summary { position: sticky; top: 5.5rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .rr-card { transition: none; &:hover { transform: none; } }
 }
